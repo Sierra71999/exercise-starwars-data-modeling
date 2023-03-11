@@ -39,7 +39,7 @@ class UserFavorites(Base):
     character_id = Column(Integer, ForeignKey('character.id'))
     character_planet = Column(Integer, ForeignKey('planets.id'))
     character_starship = Column(Integer, ForeignKey('starship.id'))
-    
+    residents = Column(Integer, ForeignKey('residence.id'))
     
 class Planets(Base):
     __tablename__='planets'
@@ -48,7 +48,7 @@ class Planets(Base):
     climate = Column(String(250), primary_key = True)
     terrain = Column(String(250), primary_key = True)
     character_id = Column(Integer, ForeignKey('character.id'))
-    #residents = Column(String(250), ForeignKey('character.id'))
+    residents = Column(Integer, ForeignKey('residents.id'))
 class StarShip(Base):
     __tablename__= 'starship'
     id = Column(Integer, primary_key=True)
@@ -58,8 +58,9 @@ class StarShip(Base):
     crew = Column(Integer, nullable= True)
     character_id = Column(Integer, ForeignKey('character.id'))
 
-class Residence(Base):
-    __tablename__= 'residence'
+class Residents(Base):
+    __tablename__= 'residents'
+    id = Column(Integer, primary_key=True)
     character_id = Column(Integer, ForeignKey('character.id'))
     character_planet = Column(Integer, ForeignKey('planets.id'))
 
